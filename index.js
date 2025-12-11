@@ -16,6 +16,7 @@ import { GroqSttProvider } from './groq.js';
 import { VAD } from './vad.js'
 import { MistralSttProvider } from './mistral.js';
 import { ChutesSttProvider } from './chutes.js';
+import { ZaiSttProvider } from './zai.js';
 export { MODULE_NAME };
 export { activateMicIcon, deactivateMicIcon };
 
@@ -35,6 +36,7 @@ let sttProviders = {
     'OpenAI': OpenAISttProvider,
     'Whisper (Extras)': WhisperExtrasSttProvider,
     'Whisper (Local)': WhisperLocalSttProvider,
+    'Z.AI': ZaiSttProvider,
     Vosk: VoskSttProvider,
     Streaming: StreamingSttProvider,
 };

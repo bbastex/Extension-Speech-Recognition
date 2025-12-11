@@ -1,10 +1,9 @@
 import { textgenerationwebui_settings, textgen_types } from '../../../textgen-settings.js';
 import { getRequestHeaders } from '../../../../script.js';
-export { KoboldCppSttProvider };
 
 const DEBUG_PREFIX = '<Speech Recognition module (KoboldCpp)> ';
 
-class KoboldCppSttProvider {
+export class KoboldCppSttProvider {
     //########//
     // Config //
     //########//
@@ -59,13 +58,9 @@ class KoboldCppSttProvider {
         requestData.append('language', this.settings.language);
         requestData.append('server', server);
 
-        // It's not a JSON, let fetch set the content type
-        const headers = getRequestHeaders();
-        delete headers['Content-Type'];
-
         const apiResult = await fetch('/api/backends/kobold/transcribe-audio', {
             method: 'POST',
-            headers: headers,
+            headers: getRequestHeaders({ omitContentType: true }),
             body: requestData,
         });
 
