@@ -12,7 +12,10 @@ import { WhisperLocalSttProvider } from './whisper-local.js';
 import { BrowserSttProvider } from './browser.js';
 import { StreamingSttProvider } from './streaming.js';
 import { KoboldCppSttProvider } from './koboldcpp.js';
+import { GroqSttProvider } from './groq.js';
 import { VAD } from './vad.js'
+import { MistralSttProvider } from './mistral.js';
+import { ChutesSttProvider } from './chutes.js';
 export { MODULE_NAME };
 export { activateMicIcon, deactivateMicIcon };
 
@@ -25,9 +28,12 @@ let inApiCall = false;
 let sttProviders = {
     None: null,
     Browser: BrowserSttProvider,
+    'Chutes': ChutesSttProvider,
+    'Groq': GroqSttProvider,
     'KoboldCpp': KoboldCppSttProvider,
-    'Whisper (Extras)': WhisperExtrasSttProvider,
+    'MistralAI': MistralSttProvider,
     'OpenAI': OpenAISttProvider,
+    'Whisper (Extras)': WhisperExtrasSttProvider,
     'Whisper (Local)': WhisperLocalSttProvider,
     Vosk: VoskSttProvider,
     Streaming: StreamingSttProvider,
@@ -371,8 +377,7 @@ function loadSttProvider(provider) {
         $('#microphone_button').show();
     }
 
-    const nonStreamingProviders = ['Vosk', 'OpenAI', 'Whisper (Extras)', 'Whisper (Local)', 'KoboldCpp'];
-    if (nonStreamingProviders.includes(sttProviderName)) {
+    if (!['Streaming', 'Browser', 'None'].includes(sttProviderName)) {
         sttProvider.loadSettings(extension_settings.speech_recognition[sttProviderName]);
         loadNavigatorAudioRecording();
         $('#microphone_button').show();
