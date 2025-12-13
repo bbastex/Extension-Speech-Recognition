@@ -1,6 +1,15 @@
 # Extension-Speech-Recognition
 
-Convert your speech to text using a browser or extras.
+Convert your speech to text using one of the supported sources.
+
+- Browser (Web Speech API)
+- Whisper (OpenAI API)
+- Voxtral (MistralAI API)
+- GLM ASR (Z.AI API)
+- KoboldCpp
+- Groq
+- Chutes
+- and others...
 
 Documentation: <https://docs.sillytavern.app/extensions/speech-recognition/>
 

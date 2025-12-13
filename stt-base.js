@@ -1,4 +1,5 @@
 import { getRequestHeaders } from '../../../../script.js';
+import { escapeHtml } from '../../../utils.js';
 
 /**
  * Base class for STT (Speech-to-Text) providers that use OpenAI-compatible APIs.
@@ -35,6 +36,11 @@ export class SttBaseProvider {
     idPrefix = 'base_stt';
 
     /**
+     * Additional note to be displayed in the settings.
+     */
+    providerNote = '';
+
+    /**
      * Available model options for the settings dropdown.
      * Each entry should have a 'value' and 'label' property.
      * @type {Array<{ value: string, label: string }>}
@@ -59,7 +65,8 @@ export class SttBaseProvider {
             .join('\n                ');
 
         return `
-        <div class="flex-container flexFlowColumn" style="margin-top:8px">
+        <div class="flex-container flexFlowColumn">
+            <b>${escapeHtml(this.providerNote)}</b>
             <label for="${this.idPrefix}_model">${this.providerName} Transcribe model</label>
             <select id="${this.idPrefix}_model">
                 ${options}

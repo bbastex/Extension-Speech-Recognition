@@ -13,5 +13,6 @@ export class ZaiSttProvider extends SttBaseProvider {
         this.modelOptions = [
             { value: 'glm-asr-2512', label: 'glm-asr-2512' },
         ];
+        this.providerNote = 'Will use Common API. Coding API is not supported!';
     }
 }
