@@ -1,4 +1,5 @@
 import { SttBaseProvider } from './stt-base.js';
+import { SECRET_KEYS } from '../../../secrets.js';
 
 export class ChutesSttProvider extends SttBaseProvider {
     constructor() {
@@ -13,5 +14,7 @@ export class ChutesSttProvider extends SttBaseProvider {
         this.modelOptions = [
             { value: 'chutes-whisper-large-v3', label: 'chutes-whisper-large-v3' },
         ];
+        this.providerNote = 'Set the API key in Chat Completion => Chutes first.';
+        this.secretKey = SECRET_KEYS.CHUTES;
     }
 }

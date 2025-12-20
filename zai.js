@@ -1,4 +1,5 @@
 import { SttBaseProvider } from './stt-base.js';
+import { SECRET_KEYS } from '../../../secrets.js';
 
 export class ZaiSttProvider extends SttBaseProvider {
     constructor() {
@@ -13,6 +14,7 @@ export class ZaiSttProvider extends SttBaseProvider {
         this.modelOptions = [
             { value: 'glm-asr-2512', label: 'glm-asr-2512' },
         ];
-        this.providerNote = 'Will use Common API. Coding API is not supported!';
+        this.providerNote = 'Set the API key in Chat Completion => Z.AI first. Will use Common API. Coding API is not supported!';
+        this.secretKey = SECRET_KEYS.ZAI;
     }
 }

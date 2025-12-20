@@ -1,4 +1,5 @@
 import { SttBaseProvider } from './stt-base.js';
+import { SECRET_KEYS } from '../../../secrets.js';
 
 export class MistralSttProvider extends SttBaseProvider {
     constructor() {
@@ -13,5 +14,7 @@ export class MistralSttProvider extends SttBaseProvider {
         this.modelOptions = [
             { value: 'voxtral-mini-latest', label: 'voxtral-mini-latest' },
         ];
+        this.providerNote = 'Set the API key in Chat Completion => MistralAI first.';
+        this.secretKey = SECRET_KEYS.MISTRALAI;
     }
 }

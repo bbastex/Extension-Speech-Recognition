@@ -1,5 +1,6 @@
 import { getRequestHeaders } from '../../../../script.js';
 import { escapeHtml } from '../../../utils.js';
+import { secret_state } from '../../../secrets.js';
 
 /**
  * Base class for STT (Speech-to-Text) providers that use OpenAI-compatible APIs.
@@ -46,6 +47,12 @@ export class SttBaseProvider {
      * @type {Array<{ value: string, label: string }>}
      */
     modelOptions = [];
+
+    /**
+     * Secret key that is required to use the provider.
+     * Requests will fail if it's not provided.
+     */
+    secretKey = '';
 
     /**
      * Debug prefix for console logging.
@@ -113,6 +120,11 @@ export class SttBaseProvider {
      * @returns {Promise<string>} Transcribed text
      */
     async processAudio(audioBlob) {
+        if (this.secretKey && !secret_state[this.secretKey]) {
+            toastr.error('Save the secret key first, then try again', `No API key saved for ${this.providerName}`);
+            throw new Error(`Missing API key for ${this.providerName}`);
+        }
+
         const requestData = new FormData();
         requestData.append('avatar', audioBlob, 'record.wav');
         requestData.append('model', this.settings.model || this.defaultSettings.model);

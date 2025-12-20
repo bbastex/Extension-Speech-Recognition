@@ -17,6 +17,7 @@ import { VAD } from './vad.js'
 import { MistralSttProvider } from './mistral.js';
 import { ChutesSttProvider } from './chutes.js';
 import { ZaiSttProvider } from './zai.js';
+import { ElevenLabsSttProvider } from './elevenlabs.js';
 export { MODULE_NAME };
 export { activateMicIcon, deactivateMicIcon };
 
@@ -30,6 +31,7 @@ let sttProviders = {
     None: null,
     Browser: BrowserSttProvider,
     'Chutes': ChutesSttProvider,
+    'ElevenLabs': ElevenLabsSttProvider,
     'Groq': GroqSttProvider,
     'KoboldCpp': KoboldCppSttProvider,
     'MistralAI': MistralSttProvider,
